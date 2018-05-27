@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E1DB41820B9E3E000AE3D04 /* USB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1DB41720B9E3E000AE3D04 /* USB.m */; };
+		5E1DB4BD20B9EF2E00AE3D04 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1DB3F620B9E21A00AE3D04 /* IOKit.framework */; };
 		5E34314C20B2722B00EFD05B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E34314B20B2722B00EFD05B /* AppDelegate.swift */; };
 		5E34314E20B2722B00EFD05B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E34314D20B2722B00EFD05B /* ViewController.swift */; };
 		5E34315120B2722B00EFD05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E34314F20B2722B00EFD05B /* Main.storyboard */; };
@@ -14,9 +16,14 @@
 		5E34315620B2722C00EFD05B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E34315420B2722C00EFD05B /* LaunchScreen.storyboard */; };
 		5E34315F20B2724A00EFD05B /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E34315E20B2724A00EFD05B /* ExternalAccessory.framework */; };
 		5E34316320B29A2E00EFD05B /* Serial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E34316220B29A2E00EFD05B /* Serial.mm */; };
+		5E8397FA20B39FFF0058360A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8397F920B39FFF0058360A /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E1DB3F620B9E21A00AE3D04 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		5E1DB41620B9E3E000AE3D04 /* USB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USB.h; sourceTree = "<group>"; };
+		5E1DB41720B9E3E000AE3D04 /* USB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USB.m; sourceTree = "<group>"; };
+		5E1DB4BB20B9EE5E00AE3D04 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		5E34314820B2722B00EFD05B /* iOUSB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOUSB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E34314B20B2722B00EFD05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E34314D20B2722B00EFD05B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +35,7 @@
 		5E34316020B29A2E00EFD05B /* iOUSB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOUSB-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E34316120B29A2E00EFD05B /* Serial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Serial.h; sourceTree = "<group>"; };
 		5E34316220B29A2E00EFD05B /* Serial.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Serial.mm; sourceTree = "<group>"; };
+		5E8397F920B39FFF0058360A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E1DB4BD20B9EF2E00AE3D04 /* IOKit.framework in Frameworks */,
 				5E34315F20B2724A00EFD05B /* ExternalAccessory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +80,9 @@
 				5E34316120B29A2E00EFD05B /* Serial.h */,
 				5E34316220B29A2E00EFD05B /* Serial.mm */,
 				5E34316020B29A2E00EFD05B /* iOUSB-Bridging-Header.h */,
+				5E8397F920B39FFF0058360A /* main.swift */,
+				5E1DB41620B9E3E000AE3D04 /* USB.h */,
+				5E1DB41720B9E3E000AE3D04 /* USB.m */,
 			);
 			path = iOUSB;
 			sourceTree = "<group>";
@@ -78,6 +90,8 @@
 		5E34315D20B2724900EFD05B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E1DB3F620B9E21A00AE3D04 /* IOKit.framework */,
+				5E1DB4BB20B9EE5E00AE3D04 /* IOKit.framework */,
 				5E34315E20B2724A00EFD05B /* ExternalAccessory.framework */,
 			);
 			name = Frameworks;
@@ -116,6 +130,14 @@
 					5E34314720B2722B00EFD05B = {
 						CreatedOnToolsVersion = 9.3.1;
 						LastSwiftMigration = 0930;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -155,8 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E1DB41820B9E3E000AE3D04 /* USB.m in Sources */,
 				5E34316320B29A2E00EFD05B /* Serial.mm in Sources */,
 				5E34314E20B2722B00EFD05B /* ViewController.swift in Sources */,
+				5E8397FA20B39FFF0058360A /* main.swift in Sources */,
 				5E34314C20B2722B00EFD05B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,8 +326,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YTT3U95S25;
 				INFOPLIST_FILE = iOUSB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,7 +335,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = XIO.iOUSB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOUSB/iOUSB-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -324,8 +347,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YTT3U95S25;
 				INFOPLIST_FILE = iOUSB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -333,7 +356,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = XIO.iOUSB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOUSB/iOUSB-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

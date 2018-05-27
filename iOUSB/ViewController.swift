@@ -34,6 +34,14 @@ class ViewController: UIViewController {
         
         //Setup Serial Communications
         listDevices()
+        
+        USB().addDeviceListener { [weak self] strings in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let alert = UIAlertController(title: "Devices", message: strings?.joined(separator: "\n"), preferredStyle: .alert)
+                alert .addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     deinit {
@@ -61,7 +69,15 @@ class ViewController: UIViewController {
             print("Hardware Revision: \($0.hardwareRevision)")
             print("Firmware Revision: \($0.firmwareRevision)")
             print("Protocol Strings: \($0.protocolStrings)")
+            
+            let alert = UIAlertController(title: $0.name, message: $0.modelNumber, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         })
+        
+        let alert = UIAlertController(title: "Test", message: "Test", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc
@@ -143,6 +159,12 @@ extension ViewController {
         }
         else {
             print("Error opening path: /dev")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let alert = UIAlertController(title: "Devices", message: USB().getDevices().joined(separator: "\n"), preferredStyle: .alert)
+            alert .addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
