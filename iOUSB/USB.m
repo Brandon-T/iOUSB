@@ -29,6 +29,32 @@ struct USBNotification
 // Implementation
 @implementation USB
 
+// Function to retrieve an interface from a plugin..
+void** getInterface(io_service_t device, CFUUIDRef type, CFUUIDRef uuid)
+{
+    // Create a plugin interface for the device.
+    IOCFPlugInInterface **plugInInterface = nil;
+    SInt32 score = 0;
+    
+    kern_return_t kr = IOCreatePlugInInterfaceForService(device, type, kIOCFPlugInInterfaceID, &plugInInterface, &score);
+    
+    if ((kIOReturnSuccess != kr) || !plugInInterface)
+    {
+        return nil;
+    }
+    
+    // Get a USBDeviceInterface from the plugin.. and release the plugin
+    void **deviceInterface = nil;
+    HRESULT res = (*plugInInterface)->QueryInterface(plugInInterface, CFUUIDGetUUIDBytes(uuid), (LPVOID*) &deviceInterface);
+    (*plugInInterface)->Release(plugInInterface);
+    
+    if (res || !deviceInterface)
+    {
+        return nil;
+    }
+    return deviceInterface;
+};
+
 // When a device has been plugged into the phone's serial port, this function will get called..
 // However, I've restricted it to just the nintendo switch.. so it will only be called if a nintendo switch is plugged in..
 void DeviceAdded(void *userInfo, io_iterator_t iterator)
@@ -54,27 +80,7 @@ void DeviceAdded(void *userInfo, io_iterator_t iterator)
     
     //Function to retrieve a USBDevice interface..
     IOUSBDeviceInterface** (^getDeviceInterface)(io_service_t) = ^IOUSBDeviceInterface**(io_service_t device) {
-        // Create a plugin interface for the device.
-        IOCFPlugInInterface **plugInInterface = nil;
-        SInt32 score = 0;
-        
-        kern_return_t kr = IOCreatePlugInInterfaceForService(device, kIOUSBDeviceUserClientTypeID, kIOCFPlugInInterfaceID, &plugInInterface, &score);
-        
-        if ((kIOReturnSuccess != kr) || !plugInInterface)
-        {
-            return nil;
-        }
-        
-        // Get a USBDeviceInterface from the plugin.. and release the plugin
-        IOUSBDeviceInterface **deviceInterface = nil;
-        HRESULT res = (*plugInInterface)->QueryInterface(plugInInterface, CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID), (LPVOID*) &deviceInterface);
-        (*plugInInterface)->Release(plugInInterface);
-        
-        if (res || !deviceInterface)
-        {
-            return nil;
-        }
-        return deviceInterface;
+        return (IOUSBDeviceInterface **)getInterface(device, kIOUSBDeviceUserClientTypeID, kIOUSBDeviceInterfaceID);
     };
     
     // Iterate over all devices..
@@ -99,9 +105,10 @@ void DeviceAdded(void *userInfo, io_iterator_t iterator)
         [strings addObject:[NSString stringWithFormat:@"Device Path: %s", planeName]];
         [strings addObject:[NSString stringWithFormat:@"VendorID: 0x%04X", vendorId]];
         [strings addObject:[NSString stringWithFormat:@"ProductID: 0x%04X", productId]];
-        [strings addObject:@"\n"];
         
         // Get a USBDeviceInterface from the plugin.. and release the plugin
+        WriteToUSB(notificationInfo, usbDevice, strings);
+        
         IOUSBDeviceInterface **deviceInterface = getDeviceInterface(usbDevice);
         if (deviceInterface)
         {
@@ -111,18 +118,20 @@ void DeviceAdded(void *userInfo, io_iterator_t iterator)
             
             // Cleanup
             (*deviceInterface)->Release(deviceInterface);
+            deviceInterface = nil;
         }
         
         
         // Register for Device Notifications.. IE: Disconnected Notification..
-//        kr = IOServiceAddInterestNotification(notificationInfo->notificationPort,
-//                                              usbDevice,
-//                                              kIOGeneralInterest,
-//                                              DeviceDisconnected,
-//                                              notificationInfo,
-//                                              &notificationInfo->notification
-//                                              );
+        kr = IOServiceAddInterestNotification(notificationInfo->notificationPort,
+                                              usbDevice,
+                                              kIOGeneralInterest,
+                                              DeviceDisconnected,
+                                              notificationInfo,
+                                              &notificationInfo->notification
+                                              );
         
+        [strings addObject:@"\n"];
         // Cleanup
         kr = IOObjectRelease(usbDevice);
     }
@@ -131,6 +140,8 @@ void DeviceAdded(void *userInfo, io_iterator_t iterator)
     deviceCallback(strings);
 }
 
+// When a device notification has been received, this function is called.
+// I'm specifically limiting it to when the switch has disconnected.
 void DeviceDisconnected(void *userInfo, io_service_t service, natural_t messageType, void *messageArgument)
 {
     struct USBNotification *notificationInfo = (struct USBNotification *)userInfo;
@@ -147,6 +158,92 @@ void DeviceDisconnected(void *userInfo, io_service_t service, natural_t messageT
     else {
         void(^deviceCallback)(NSArray<NSString *> *info) = (typeof(deviceCallback))imp_getBlock((IMP)notificationInfo->deviceCallback);
         deviceCallback(@[@"Message Received"]);
+    }
+}
+
+// Test writing to the Nintendo Switch's USB..
+void WriteToUSB(struct USBNotification *notificationInfo, io_service_t usbDevice, NSMutableArray* strings)
+{
+    //Function to retrieve a USBDevice interface..
+    IOUSBDeviceInterface300** (^getDeviceInterface)(io_service_t) = ^IOUSBDeviceInterface300**(io_service_t device) {
+        return (IOUSBDeviceInterface300 **)getInterface(device, kIOUSBDeviceUserClientTypeID, kIOUSBDeviceInterfaceID300);
+    };
+    
+    //Function to retrieve a USBInterface interface..
+    IOUSBInterfaceInterface300** (^getUSBInterface)(io_service_t) = ^IOUSBInterfaceInterface300**(io_service_t device) {
+        return (IOUSBInterfaceInterface300 **)getInterface(device, kIOUSBInterfaceUserClientTypeID, kIOUSBInterfaceInterfaceID300);
+    };
+    // Open the USB device for communication.
+    IOUSBDeviceInterface300 **deviceInterface = getDeviceInterface(usbDevice);
+    if (deviceInterface)
+    {
+        if ((*deviceInterface)->USBDeviceOpen(deviceInterface) == kIOReturnSuccess)
+        {
+            //Get the configuration..
+            IOUSBConfigurationDescriptorPtr config;
+            kern_return_t kr = (*deviceInterface)->GetConfigurationDescriptorPtr(deviceInterface, 0, &config);
+            if (kr == kIOReturnSuccess)
+            {
+                (*deviceInterface)->SetConfiguration(deviceInterface, config->bConfigurationValue);
+                
+                //Find the USB interface..
+                IOUSBFindInterfaceRequest interfaceRequest;
+                interfaceRequest.bInterfaceClass = kIOUSBFindInterfaceDontCare;
+                interfaceRequest.bInterfaceSubClass = kIOUSBFindInterfaceDontCare;
+                interfaceRequest.bInterfaceProtocol = kIOUSBFindInterfaceDontCare;
+                interfaceRequest.bAlternateSetting = kIOUSBFindInterfaceDontCare;
+                
+                //Get an interface iterator..
+                io_iterator_t iterator;
+                kr = (*deviceInterface)->CreateInterfaceIterator(deviceInterface, &interfaceRequest, &iterator);
+                if (kr == kIOReturnSuccess)
+                {
+                    if ((usbDevice = IOIteratorNext(iterator)))
+                    {
+                        IOUSBInterfaceInterface300 **usbInterface = getUSBInterface(usbDevice);
+                        if (usbInterface)
+                        {
+                            kr = (*usbInterface)->USBInterfaceOpen(usbInterface);
+                            if (kr == kIOReturnSuccess) {
+                                UInt8 pipe_ref = 1;
+                                kr = (*usbInterface)->GetPipeStatus(usbInterface, pipe_ref);
+                                switch (kr) {
+                                    case kIOReturnNoDevice:
+                                        [strings addObject:@"Pipe Status: No Device"];
+                                        break;
+                                    case kIOReturnNotOpen:
+                                        [strings addObject:@"Pipe Status: Not Open"];
+                                        break;
+                                    case kIOReturnSuccess:
+                                        [strings addObject:@"Pipe Status: Open"];
+                                        break;
+                                    case kIOReturnBusy:
+                                        [strings addObject:@"Pipe Status: Busy"];
+                                        break;
+                                    default:
+                                        [strings addObject:@"Pipe Status: We screwed up"];
+                                        break;
+                                }
+                                
+                                //Testing..
+//                                char data[0] = {};
+//                                (*usbInterface)->WritePipe(usbInterface, pipe_ref, data, sizeof(data));
+                            }
+                            
+                            (*usbInterface)->Release(usbInterface);
+                        }
+                        
+                        IOObjectRelease(usbDevice);
+                    }
+                    
+                    IOObjectRelease(iterator);
+                }
+            }
+            
+            (*deviceInterface)->USBDeviceClose(deviceInterface);
+        }
+        
+        (*deviceInterface)->Release(deviceInterface);
     }
 }
 
