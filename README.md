@@ -31,7 +31,7 @@ typedef signed long SInt32;
 ```
 
 
-#Dependencies:
+# Dependencies:
 LibUSB: https://github.com/libusb/libusb
 
 I've already included a modified version of `libusb` project file to compile for iOS. The above link is here just in case you'd like to do everything yourself.
