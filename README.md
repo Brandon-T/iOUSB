@@ -48,3 +48,14 @@ In that case, you need to change:
 `BuildSettings -> SkipInstall` to `YES`.
 
 If you need to `archive` an ipa for distribution, then you need to modify the `OSTypes.h` as described above in order to build with bit-code and 64-bit devices.
+
+
+Notes:
+---------------------
+
+You either need an OTG adapter with external charging such as Apple's USB-3 Camera Adapter with Lightning charging port..
+OR
+You can get any OTG adapter.
+
+--
+The USB-3 one with charging keeps the devices attached when they need extra power. Other adapters MIGHT do this. If the device requires more power, it will "intermittently" connect/disconnect over and over.. You can still run the code above.. You'll just have to spam the "Reload" button so that when it does connect, the exploit is uploaded :)
