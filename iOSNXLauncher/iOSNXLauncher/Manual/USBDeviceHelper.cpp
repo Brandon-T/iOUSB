@@ -8,6 +8,8 @@
 
 #include "USBDeviceHelper.hpp"
 
+#ifndef USB_LIB_USB
+
 /// Converts IOKit errors to human readable strings.
 std::string usb_human_error_string(IOReturn errorCode)
 {
@@ -494,3 +496,4 @@ bool BulkTransfer(IOUSBInterfaceInterface300** interface, UInt8 pipeRef, std::ui
 {
     return (*interface)->ReadPipe(interface, pipeRef, buffer, size) == kIOReturnSuccess;
 }
+#endif

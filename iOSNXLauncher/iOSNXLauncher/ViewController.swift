@@ -126,7 +126,7 @@ extension ViewController {
                 footerView.rightAnchor.constraint(equalTo: view.rightAnchor),
                 footerView.topAnchor.constraint(equalTo: logTextView.bottomAnchor, constant: 15.0),
                 footerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-                ])
+            ])
         }
         else {
             edgesForExtendedLayout = .init(rawValue: 0)
@@ -140,7 +140,7 @@ extension ViewController {
                 footerView.rightAnchor.constraint(equalTo: view.rightAnchor),
                 footerView.topAnchor.constraint(equalTo: logTextView.bottomAnchor, constant: 15.0),
                 footerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                ])
+            ])
         }
         
         view.subviews.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })

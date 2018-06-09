@@ -9,26 +9,77 @@
 #include "NXLauncher.h"
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 #import <UIKit/UIKit.h>
 #import <iOSNXLauncher-Swift.h>
 
 #include "NXUSBDevice.hpp"
+#include "fusee.h"
 
-std::vector<std::uint8_t> createPayload(const char* path)
+std::vector<std::uint8_t> loadIntermezzo()
 {
-    throw std::runtime_error("Need to implement instead of reading the binary exploit file -- provide own payload");
-    
-    std::vector<std::uint8_t> buffer;
-    std::fstream file(path, std::ios::in | std::ios::binary);
+    const std::string intermezzo_path = [[NSBundle mainBundle] pathForResource:@"intermezzo" ofType:@"bin"].UTF8String;
+    std::fstream file(intermezzo_path, std::ios::in | std::ios::binary);
     if (file)
     {
+        std::vector<std::uint8_t> intermezzo;
         file.seekg(0, std::ios::end);
-        buffer.resize(file.tellg());
+        std::size_t size = file.tellg();
         file.seekg(0, std::ios::beg);
-        file.read(reinterpret_cast<char*>(&buffer[0]), buffer.size());
-        return buffer;
+        
+        intermezzo.resize(size);
+        file.read(reinterpret_cast<char*>(&intermezzo[0]), size);
+        return intermezzo;
     }
+    
+    return intermezzo;
+}
+
+std::vector<std::uint8_t> loadPayload()
+{
+    const std::string payload_path = [[NSBundle mainBundle] pathForResource:@"payload" ofType:@"bin"].UTF8String;
+    std::fstream file(payload_path, std::ios::in | std::ios::binary);
+    if (file)
+    {
+        std::vector<std::uint8_t> payload;
+        file.seekg(0, std::ios::end);
+        std::size_t size = file.tellg();
+        file.seekg(0, std::ios::beg);
+        
+        payload.resize(size);
+        file.read(reinterpret_cast<char*>(&payload[0]), size);
+        return payload;
+    }
+    
+    return fusee;
+}
+
+std::vector<std::uint8_t> createPayload(std::vector<std::uint8_t> intermezzo, std::vector<std::uint8_t> payload)
+{
+    const std::intptr_t RCM_PAYLOAD_ADDRESS = 0x40010000;
+    const std::intptr_t INTERMEZZO_LOCATION = 0x4001F000;
+    const std::intptr_t PAYLOAD_LOAD_BLOCK = 0x40020000;
+    
+    const std::uint32_t MAX_PAYLOAD_LENGTH = 0x30298;
+    const std::uint32_t HEADER_SIZE = 0x2A8;
+    
+    const std::uint32_t RCM_PAYLOAD_SIZE = ceil((HEADER_SIZE + (INTERMEZZO_LOCATION - RCM_PAYLOAD_ADDRESS) + 0x1000 + fusee.size()) / 0x1000) * 0x1000;
+    
+    std::vector<std::uint8_t> buffer(RCM_PAYLOAD_SIZE + 0x1000);
+    std::uint8_t* rcmPayload = &buffer[0];
+
+    *reinterpret_cast<std::uint32_t*>(rcmPayload) = MAX_PAYLOAD_LENGTH;
+    rcmPayload += HEADER_SIZE;
+    
+    for (std::intptr_t i = RCM_PAYLOAD_ADDRESS; i < INTERMEZZO_LOCATION; i += sizeof(std::uint32_t))
+    {
+        *reinterpret_cast<std::uint32_t*>(rcmPayload) = INTERMEZZO_LOCATION;
+        rcmPayload += sizeof(std::uint32_t);
+    }
+    
+    memcpy(rcmPayload, &intermezzo[0], intermezzo.size());
+    memcpy(rcmPayload + (PAYLOAD_LOAD_BLOCK - INTERMEZZO_LOCATION), &fusee[0], fusee.size());
     return buffer;
 }
 
@@ -46,8 +97,11 @@ std::vector<std::uint8_t> createPayload(const char* path)
             [ViewController.logger clear];
             [ViewController.logger appendString:[NSString stringWithFormat:@"%s", nx_device.get_debug_info().c_str()]];
             
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"bytes" ofType:@"bin"];
-            std::vector<uint8_t> payload = createPayload(path.UTF8String);
+            
+            auto intermezzo_data = loadIntermezzo();
+            auto payload_data = loadPayload();
+            
+            std::vector<std::uint8_t> payload = createPayload(intermezzo_data, payload_data);
             nx_device.write(payload);
             
             std::vector<uint8_t> high_buffer(0x1000, 0x00);

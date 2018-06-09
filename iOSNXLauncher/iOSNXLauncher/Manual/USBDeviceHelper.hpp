@@ -9,6 +9,8 @@
 #ifndef USBDeviceHelper_hpp
 #define USBDeviceHelper_hpp
 
+#ifndef USB_LIB_USB
+
 extern "C" {
     #import <IOKit/IOKitLib.h>
     #import <IOKit/usb/IOUSBLib.h>
@@ -59,5 +61,7 @@ std::string GetDeviceStringDescriptor(IOUSBDeviceInterface300** deviceInterface,
 bool GetEndpoints(IOUSBInterfaceInterface300** interface, UInt8 &controlPipeRef, UInt8 &readPipeRef, UInt8 &writePipeRef);
 
 bool BulkTransfer(IOUSBInterfaceInterface300** interface, UInt8 pipeRef, std::uint8_t* buffer, std::uint32_t* size);
+
+#endif
 
 #endif /* USBDeviceHelper_hpp */
