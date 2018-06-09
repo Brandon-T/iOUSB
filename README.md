@@ -29,3 +29,16 @@ typedef signed int SInt32;
 typedef signed long SInt32;
 #endif
 ```
+
+
+#Dependencies:
+LibUSB: https://github.com/libusb/libusb
+
+I've already included a modified version of `libusb` project file to compile for iOS. The above link is here just in case you'd like to do everything yourself.
+
+In that case, you need to change: 
+
+`BuildSettings -> Base-SDK` to `Latest iOS (iOS ##.#)`.
+`BuildSettings -> SkipInstall` to `YES`.
+
+If you need to `archive` an ipa for distribution, then you need to modify the `OSTypes.h` as described above in order to build with bit-code and 64-bit devices.
