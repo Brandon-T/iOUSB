@@ -19,18 +19,22 @@
 
 std::vector<std::uint8_t> loadIntermezzo()
 {
-    const std::string intermezzo_path = [[NSBundle mainBundle] pathForResource:@"intermezzo" ofType:@"bin"].UTF8String;
-    std::fstream file(intermezzo_path, std::ios::in | std::ios::binary);
-    if (file)
+    const std::string intermezzo_path = [[NSBundle mainBundle] pathForResource:@"intermezzo" ofType:@"bin"].UTF8String ?: "";
+    
+    if (intermezzo_path.length())
     {
-        std::vector<std::uint8_t> intermezzo;
-        file.seekg(0, std::ios::end);
-        std::size_t size = file.tellg();
-        file.seekg(0, std::ios::beg);
-        
-        intermezzo.resize(size);
-        file.read(reinterpret_cast<char*>(&intermezzo[0]), size);
-        return intermezzo;
+        std::fstream file(intermezzo_path, std::ios::in | std::ios::binary);
+        if (file)
+        {
+            std::vector<std::uint8_t> intermezzo;
+            file.seekg(0, std::ios::end);
+            std::size_t size = file.tellg();
+            file.seekg(0, std::ios::beg);
+            
+            intermezzo.resize(size);
+            file.read(reinterpret_cast<char*>(&intermezzo[0]), size);
+            return intermezzo;
+        }
     }
     
     return intermezzo;
@@ -38,18 +42,22 @@ std::vector<std::uint8_t> loadIntermezzo()
 
 std::vector<std::uint8_t> loadPayload()
 {
-    const std::string payload_path = [[NSBundle mainBundle] pathForResource:@"payload" ofType:@"bin"].UTF8String;
-    std::fstream file(payload_path, std::ios::in | std::ios::binary);
-    if (file)
+    const std::string payload_path = [[NSBundle mainBundle] pathForResource:@"payload" ofType:@"bin"].UTF8String ?: "";
+    
+    if (payload_path.length())
     {
-        std::vector<std::uint8_t> payload;
-        file.seekg(0, std::ios::end);
-        std::size_t size = file.tellg();
-        file.seekg(0, std::ios::beg);
-        
-        payload.resize(size);
-        file.read(reinterpret_cast<char*>(&payload[0]), size);
-        return payload;
+        std::fstream file(payload_path, std::ios::in | std::ios::binary);
+        if (file)
+        {
+            std::vector<std::uint8_t> payload;
+            file.seekg(0, std::ios::end);
+            std::size_t size = file.tellg();
+            file.seekg(0, std::ios::beg);
+            
+            payload.resize(size);
+            file.read(reinterpret_cast<char*>(&payload[0]), size);
+            return payload;
+        }
     }
     
     return fusee;

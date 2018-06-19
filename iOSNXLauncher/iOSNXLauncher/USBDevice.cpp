@@ -97,16 +97,24 @@ bool USBDevice::control(std::uint8_t bmRequest, std::uint8_t bRequest, std::uint
 /// Properties
 std::string USBDevice::get_manufacturer()
 {
-    char manufacturer[256] = {0};
-    libusb_get_string_descriptor_ascii(handle, desc.iManufacturer, reinterpret_cast<std::uint8_t*>(&manufacturer[0]), sizeof(manufacturer));
-    return manufacturer;
+    if (handle)
+    {
+        char manufacturer[256] = {0};
+        libusb_get_string_descriptor_ascii(handle, desc.iManufacturer, reinterpret_cast<std::uint8_t*>(&manufacturer[0]), sizeof(manufacturer));
+        return manufacturer;
+    }
+    return "";
 }
 
 std::string USBDevice::get_product_name()
 {
-    char productName[256] = {0};
-    libusb_get_string_descriptor_ascii(handle, desc.iProduct, reinterpret_cast<std::uint8_t*>(&productName[0]), sizeof(productName));
-    return productName;
+    if (handle)
+    {
+        char productName[256] = {0};
+        libusb_get_string_descriptor_ascii(handle, desc.iProduct, reinterpret_cast<std::uint8_t*>(&productName[0]), sizeof(productName));
+        return productName;
+    }
+    return "";
 }
 
 std::uint16_t USBDevice::get_vendor_id()
