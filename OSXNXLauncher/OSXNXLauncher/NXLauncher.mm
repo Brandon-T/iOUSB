@@ -11,8 +11,8 @@
 #include <vector>
 #include <cmath>
 
-#import <UIKit/UIKit.h>
-#import <iOSNXLauncher-Swift.h>
+#import <Cocoa/Cocoa.h>
+#import <OSXNXLauncher-Swift.h>
 
 #include "NXUSBDevice.hpp"
 #include "fusee.h"

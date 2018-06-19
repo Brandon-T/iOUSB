@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E1CB56520D884AF00CB830B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB56420D884AF00CB830B /* main.swift */; };
+		5E1CB57920D884D500CB830B /* NXUSBDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB56C20D884D500CB830B /* NXUSBDevice.cpp */; };
+		5E1CB57A20D884D500CB830B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB56D20D884D500CB830B /* ViewController.swift */; };
+		5E1CB57B20D884D500CB830B /* NXLauncher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB56F20D884D500CB830B /* NXLauncher.mm */; };
+		5E1CB57C20D884D500CB830B /* USBDeviceHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB57220D884D500CB830B /* USBDeviceHelper.cpp */; };
+		5E1CB57D20D884D500CB830B /* USBDevice.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB57320D884D500CB830B /* USBDevice.cxx */; };
+		5E1CB57E20D884D500CB830B /* USBDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB57620D884D500CB830B /* USBDevice.cpp */; };
+		5E1CB59D20D88A1900CB830B /* libusb-osx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1CB59C20D88A1900CB830B /* libusb-osx.dylib */; };
+		5E1CB59F20D88AED00CB830B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB59E20D88AED00CB830B /* AppDelegate.swift */; };
+		5E1CB5A320D8960D00CB830B /* SYFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1CB5A220D8960D00CB830B /* SYFlatButton.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5E1CB55F20D884AF00CB830B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5E1CB56120D884AF00CB830B /* OSXNXLauncher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OSXNXLauncher; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E1CB56420D884AF00CB830B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5E1CB56B20D884D400CB830B /* OSXNXLauncher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXNXLauncher-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E1CB56C20D884D500CB830B /* NXUSBDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NXUSBDevice.cpp; sourceTree = "<group>"; };
+		5E1CB56D20D884D500CB830B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5E1CB56E20D884D500CB830B /* NXUSBDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NXUSBDevice.hpp; sourceTree = "<group>"; };
+		5E1CB56F20D884D500CB830B /* NXLauncher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NXLauncher.mm; sourceTree = "<group>"; };
+		5E1CB57120D884D500CB830B /* USBDevice.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = USBDevice.hxx; sourceTree = "<group>"; };
+		5E1CB57220D884D500CB830B /* USBDeviceHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = USBDeviceHelper.cpp; sourceTree = "<group>"; };
+		5E1CB57320D884D500CB830B /* USBDevice.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = USBDevice.cxx; sourceTree = "<group>"; };
+		5E1CB57420D884D500CB830B /* USBDeviceHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = USBDeviceHelper.hpp; sourceTree = "<group>"; };
+		5E1CB57520D884D500CB830B /* fusee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fusee.h; sourceTree = "<group>"; };
+		5E1CB57620D884D500CB830B /* USBDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = USBDevice.cpp; sourceTree = "<group>"; };
+		5E1CB57720D884D500CB830B /* USBDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = USBDevice.hpp; sourceTree = "<group>"; };
+		5E1CB57820D884D500CB830B /* NXLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXLauncher.h; sourceTree = "<group>"; };
+		5E1CB59C20D88A1900CB830B /* libusb-osx.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = "libusb-osx.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E1CB59E20D88AED00CB830B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5E1CB5A120D8960D00CB830B /* SYFlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYFlatButton.h; sourceTree = "<group>"; };
+		5E1CB5A220D8960D00CB830B /* SYFlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYFlatButton.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E1CB55E20D884AF00CB830B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E1CB59D20D88A1900CB830B /* libusb-osx.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E1CB55820D884AF00CB830B = {
+			isa = PBXGroup;
+			children = (
+				5E1CB56320D884AF00CB830B /* OSXNXLauncher */,
+				5E1CB56220D884AF00CB830B /* Products */,
+				5E1CB59B20D88A1900CB830B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5E1CB56220D884AF00CB830B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E1CB56120D884AF00CB830B /* OSXNXLauncher */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E1CB56320D884AF00CB830B /* OSXNXLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				5E1CB5A020D895F800CB830B /* ThirdParty */,
+				5E1CB57020D884D500CB830B /* Manual */,
+				5E1CB57520D884D500CB830B /* fusee.h */,
+				5E1CB57820D884D500CB830B /* NXLauncher.h */,
+				5E1CB56F20D884D500CB830B /* NXLauncher.mm */,
+				5E1CB56B20D884D400CB830B /* OSXNXLauncher-Bridging-Header.h */,
+				5E1CB56C20D884D500CB830B /* NXUSBDevice.cpp */,
+				5E1CB56E20D884D500CB830B /* NXUSBDevice.hpp */,
+				5E1CB57620D884D500CB830B /* USBDevice.cpp */,
+				5E1CB57720D884D500CB830B /* USBDevice.hpp */,
+				5E1CB56D20D884D500CB830B /* ViewController.swift */,
+				5E1CB59E20D88AED00CB830B /* AppDelegate.swift */,
+				5E1CB56420D884AF00CB830B /* main.swift */,
+			);
+			path = OSXNXLauncher;
+			sourceTree = "<group>";
+		};
+		5E1CB57020D884D500CB830B /* Manual */ = {
+			isa = PBXGroup;
+			children = (
+				5E1CB57120D884D500CB830B /* USBDevice.hxx */,
+				5E1CB57220D884D500CB830B /* USBDeviceHelper.cpp */,
+				5E1CB57320D884D500CB830B /* USBDevice.cxx */,
+				5E1CB57420D884D500CB830B /* USBDeviceHelper.hpp */,
+			);
+			path = Manual;
+			sourceTree = "<group>";
+		};
+		5E1CB59B20D88A1900CB830B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E1CB59C20D88A1900CB830B /* libusb-osx.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E1CB5A020D895F800CB830B /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				5E1CB5A120D8960D00CB830B /* SYFlatButton.h */,
+				5E1CB5A220D8960D00CB830B /* SYFlatButton.m */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E1CB56020D884AF00CB830B /* OSXNXLauncher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E1CB56820D884AF00CB830B /* Build configuration list for PBXNativeTarget "OSXNXLauncher" */;
+			buildPhases = (
+				5E1CB55D20D884AF00CB830B /* Sources */,
+				5E1CB55E20D884AF00CB830B /* Frameworks */,
+				5E1CB55F20D884AF00CB830B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OSXNXLauncher;
+			productName = OSXNXLauncher;
+			productReference = 5E1CB56120D884AF00CB830B /* OSXNXLauncher */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E1CB55920D884AF00CB830B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = XIO;
+				TargetAttributes = {
+					5E1CB56020D884AF00CB830B = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+					};
+				};
+			};
+			buildConfigurationList = 5E1CB55C20D884AF00CB830B /* Build configuration list for PBXProject "OSXNXLauncher" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5E1CB55820D884AF00CB830B;
+			productRefGroup = 5E1CB56220D884AF00CB830B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E1CB56020D884AF00CB830B /* OSXNXLauncher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E1CB55D20D884AF00CB830B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E1CB59F20D88AED00CB830B /* AppDelegate.swift in Sources */,
+				5E1CB57E20D884D500CB830B /* USBDevice.cpp in Sources */,
+				5E1CB57D20D884D500CB830B /* USBDevice.cxx in Sources */,
+				5E1CB57A20D884D500CB830B /* ViewController.swift in Sources */,
+				5E1CB57B20D884D500CB830B /* NXLauncher.mm in Sources */,
+				5E1CB57920D884D500CB830B /* NXUSBDevice.cpp in Sources */,
+				5E1CB56520D884AF00CB830B /* main.swift in Sources */,
+				5E1CB57C20D884D500CB830B /* USBDeviceHelper.cpp in Sources */,
+				5E1CB5A320D8960D00CB830B /* SYFlatButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5E1CB56620D884AF00CB830B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5E1CB56720D884AF00CB830B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		5E1CB56920D884AF00CB830B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"USB_LIB_USB=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OSXNXLauncher/OSXNXLauncher-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		5E1CB56A20D884AF00CB830B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_PREPROCESSOR_DEFINITIONS = "USB_LIB_USB=1";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OSXNXLauncher/OSXNXLauncher-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E1CB55C20D884AF00CB830B /* Build configuration list for PBXProject "OSXNXLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E1CB56620D884AF00CB830B /* Debug */,
+				5E1CB56720D884AF00CB830B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E1CB56820D884AF00CB830B /* Build configuration list for PBXNativeTarget "OSXNXLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E1CB56920D884AF00CB830B /* Debug */,
+				5E1CB56A20D884AF00CB830B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E1CB55920D884AF00CB830B /* Project object */;
+}
