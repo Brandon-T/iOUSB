@@ -14,10 +14,10 @@ NXUSBDevice::NXUSBDevice(USBDevice *device) : device(device), isDeviceReady(fals
     {
         if (device->open())
         {
-            if (device->claim_interface(0))
-            {
-                isDeviceReady = true;
-            }
+            device->claim_interface(0);
+            device->claim_interface(1);
+            device->claim_interface(2);
+            isDeviceReady = true;
         }
     }
 }

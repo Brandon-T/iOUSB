@@ -125,6 +125,11 @@ std::vector<std::uint8_t> createPayload(std::vector<std::uint8_t> intermezzo, st
             [ViewController.logger appendString:[NSString stringWithFormat:@"%s", nx_device.get_debug_info().c_str()]];
         }
     }
+    
+    if (!devices.size())
+    {
+        [ViewController.logger appendString:@"No Devices Connected"];
+    }
 }
 @end
 #else
