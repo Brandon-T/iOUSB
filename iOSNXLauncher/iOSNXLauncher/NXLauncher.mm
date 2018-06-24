@@ -129,6 +129,39 @@ std::vector<std::uint8_t> createPayload(std::vector<std::uint8_t> intermezzo, st
     if (!devices.size())
     {
         [ViewController.logger appendString:@"No Devices Connected"];
+        
+        libusb_context *context = NULL;
+        libusb_device **list = NULL;
+
+        int rc = libusb_init(&context);
+        if (rc != 0)
+        {
+            [ViewController.logger appendString:@"Error Initializing LibUSB"];
+            return;
+        }
+        
+        ssize_t count = libusb_get_device_list(context, &list);
+        if (count <= 0)
+        {
+            [ViewController.logger appendString:@"Failed to Detect Any Devices.."];
+            return;
+        }
+        
+        [ViewController.logger appendString:@"Detected Devices: \n\n"];
+        
+        for (size_t idx = 0; idx < count; ++idx)
+        {
+            libusb_device *device = list[idx];
+            libusb_device_descriptor desc = {0};
+            
+            rc = libusb_get_device_descriptor(device, &desc);
+            assert(rc == 0);
+            
+            printf("VendorID: %04x\nProductID: %04x\n", desc.idVendor, desc.idProduct);
+        }
+        
+        libusb_free_device_list(list, 1);
+        libusb_exit(context);
     }
 }
 @end

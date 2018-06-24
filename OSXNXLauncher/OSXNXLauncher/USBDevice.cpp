@@ -38,12 +38,12 @@ bool USBDevice::claim_interface(std::int32_t interface)
     libusb_get_configuration(handle, &config);
     libusb_set_configuration(handle, 1);
     
-    return !libusb_claim_interface(handle, 0);
+    return !libusb_claim_interface(handle, interface);
 }
 
 bool USBDevice::unclaim_interface(std::int32_t interface)
 {
-    return !libusb_release_interface(handle, 0);
+    return !libusb_release_interface(handle, interface);
 }
 
 bool USBDevice::write(std::uint8_t endpoint, std::vector<uint8_t> &data)
