@@ -1,0 +1,9 @@
+Package: com.XIO.iOSNXLauncher
+Name: iOSNXLauncher
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: A Fusee Gelee Launcher for iOS
+Homepage: https://github.com/Brandon-T/iOUSB
+Maintainer: Brandon T
+Author: Brandon T
+Section: Applications
