@@ -17,6 +17,7 @@
 		5E9A318E20C44685000A8A69 /* USBDevice.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A318D20C44685000A8A69 /* USBDevice.cxx */; };
 		5E9A319020C44703000A8A69 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A318F20C44702000A8A69 /* IOKit.framework */; };
 		5E9A319320C44D0D000A8A69 /* USBDeviceHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A319120C44D0D000A8A69 /* USBDeviceHelper.cpp */; };
+		5E9D880820F598FA008E7837 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D880720F598FA008E7837 /* main.mm */; };
 		5EEB30CC20CB646700806F94 /* libusb-1.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5EEB30CB20CB646700806F94 /* libusb-1.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5EEB30CD20CB647000806F94 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB30CB20CB646700806F94 /* libusb-1.0.0.dylib */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,9 @@
 		5E9A318F20C44702000A8A69 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		5E9A319120C44D0D000A8A69 /* USBDeviceHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = USBDeviceHelper.cpp; sourceTree = "<group>"; };
 		5E9A319220C44D0D000A8A69 /* USBDeviceHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = USBDeviceHelper.hpp; sourceTree = "<group>"; };
+		5E9D880420F592CF008E7837 /* iOSNXLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSNXLauncher.entitlements; sourceTree = "<group>"; };
+		5E9D880720F598FA008E7837 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		5E9D880B20F599F8008E7837 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		5EEB30CB20CB646700806F94 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,6 +96,7 @@
 		5E9A316720C42655000A8A69 /* iOSNXLauncher */ = {
 			isa = PBXGroup;
 			children = (
+				5E9D880420F592CF008E7837 /* iOSNXLauncher.entitlements */,
 				5E9A318B20C44662000A8A69 /* Manual */,
 				5E9A316820C42655000A8A69 /* AppDelegate.swift */,
 				5E9A316A20C42655000A8A69 /* ViewController.swift */,
@@ -106,6 +111,8 @@
 				5E9A318620C43684000A8A69 /* USBDevice.hpp */,
 				5E9A318820C43D5A000A8A69 /* NXUSBDevice.cpp */,
 				5E9A318920C43D5A000A8A69 /* NXUSBDevice.hpp */,
+				5E9D880720F598FA008E7837 /* main.mm */,
+				5E9D880B20F599F8008E7837 /* main.h */,
 			);
 			path = iOSNXLauncher;
 			sourceTree = "<group>";
@@ -163,6 +170,11 @@
 					5E9A316420C42655000A8A69 = {
 						CreatedOnToolsVersion = 9.3.1;
 						LastSwiftMigration = 0930;
+						SystemCapabilities = {
+							com.apple.WAC = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -207,6 +219,7 @@
 				5E9A318720C43684000A8A69 /* USBDevice.cpp in Sources */,
 				5E9A317D20C42682000A8A69 /* NXLauncher.mm in Sources */,
 				5E9A316B20C42655000A8A69 /* ViewController.swift in Sources */,
+				5E9D880820F598FA008E7837 /* main.mm in Sources */,
 				5E9A316920C42655000A8A69 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +357,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = iOSNXLauncher/iOSNXLauncher.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -359,6 +374,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.XIO.iOSNXLauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOSNXLauncher/iOSNXLauncher-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -371,7 +388,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = iOSNXLauncher/iOSNXLauncher.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = "USB_LIB_USB=1";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../";
@@ -382,6 +401,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.XIO.iOSNXLauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOSNXLauncher/iOSNXLauncher-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

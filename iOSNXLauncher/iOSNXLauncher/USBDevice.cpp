@@ -173,6 +173,8 @@ USBDeviceManager::USBDeviceManager() : context(nullptr), deviceList(nullptr), de
     {
         throw std::runtime_error("Initialize USBDeviceManager");
     }
+    
+    libusb_set_option(context, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_DEBUG);
 }
 
 USBDeviceManager::~USBDeviceManager()
